@@ -8,6 +8,7 @@ function App() {
   return (
     <Router>
       <Navigation />
+
       <Route exact path='/' component={ShoppingList} />
     </Router>
   );

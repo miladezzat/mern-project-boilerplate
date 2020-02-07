@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../../actions/itemActions'
 import PropTypes from 'prop-types';
+import AddItem from '../AddItem';
 
 class ShoppingList extends Component {
     componentDidMount() {
@@ -33,6 +34,7 @@ class ShoppingList extends Component {
         return (
             <div className="container">
                 <div className="row">
+                    <AddItem />
                     <div className="col-12 mt-5">
                         {ListItems}
                     </div>
