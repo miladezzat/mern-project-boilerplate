@@ -16,7 +16,7 @@ import {
 class AddItem extends Component {
     state = {
         modal: false,
-        itemName: '',
+        name: '',
     }
     toggle = () => {        
         this.setState({
@@ -30,7 +30,7 @@ class AddItem extends Component {
         e.preventDefault();
         const newItem = {
             id: uuid(),
-            name: this.state.itemName
+            name: this.state.name
         }
 
         // Add item via addItem action
@@ -57,7 +57,7 @@ class AddItem extends Component {
                                 <Label for="item">Item</Label>
                                 <Input
                                     type="text"
-                                    name="itemName"
+                                    name="name"
                                     id="item"
                                     placeholder="Add Shopping Item"
                                     onChange={this.onChange}                                

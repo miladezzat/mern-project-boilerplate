@@ -12,17 +12,17 @@ class ShoppingList extends Component {
         this.props.deleteItem(id);
     }
     render() {
-        const { items } = this.props.itemReducer;
+        const { items } = this.props.itemReducer;        
         const ListItems = items && items.length > 0 &&
             (
                 <ul className="list-group ">
                     {
-                        items.map(({ id, name }) => (
-                            <li className="list-group-item clearfix" key={id}>
+                        items.map(({ _id, name }) => (
+                            <li className="list-group-item clearfix" key={_id}>
                                 <span className="float-left">{name}</span>
                                 <button
                                     className="btn btn-danger float-right"
-                                    onClick={() => { this.onDeleteClick(id) }}
+                                    onClick={() => { this.onDeleteClick(_id) }}
                                 >
                                     &times;
                                 </button>
