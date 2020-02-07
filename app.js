@@ -24,4 +24,33 @@ app.use('/users', usersRouter);
 //using api
 app.use('/api/items', itemsRouter);
 
+
+/**
+ * Middleware for handle not found route 
+ */
+app.use((req, res, next) => {
+    const error = new Error("Not Found URL request");
+    error.status = 404;
+    next(error);
+});
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    if (error.status === 404) {
+        return res.json({
+            error: {
+                message: error.message
+            }
+        });
+    } else {
+        return res.json({
+            error: {
+                message: error.message
+            }
+        });
+    }
+
+
+});
+
 module.exports = app;
