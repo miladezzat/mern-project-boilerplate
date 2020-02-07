@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const itemsRouter = require('./routes/api/items');
 
 const app = express(); //creating app
@@ -15,15 +14,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-//user routes
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 //using api
 app.use('/api/items', itemsRouter);
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'front-end/build')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'front-end','build','index.html'))
+    });
+}
 
 /**
  * Middleware for handle not found route 
