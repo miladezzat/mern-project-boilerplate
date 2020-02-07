@@ -1,0 +1,44 @@
+{
+  "name": "boilerplate-mern",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "server": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "mongoose": "^5.8.11",
+    "morgan": "~1.9.1"
+  },
+  "description": "This project is boilerplate for mern stack auth system",
+  "main": "app.js",
+  "keywords": [
+    "MERN",
+    "auth",
+    "login",
+    "register",
+    "mongodb",
+    "react",
+    "reactjs",
+    "express",
+    "expressjs",
+    "nodejs"
+  ],
+  "author": "Milad E. Fahmy",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miladezzat/mern-project-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miladezzat/mern-project-boilerplate/issues"
+  },
+  "homepage": "https://github.com/miladezzat/mern-project-boilerplate#readme"
+}
