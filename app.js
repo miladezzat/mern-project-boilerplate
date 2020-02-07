@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const itemsRouter = require('./routes/api/items');
 
 const app = express(); //creating app
 
@@ -16,7 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//user routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+//using api
+app.use('/api/items', itemsRouter);
 
 module.exports = app;
