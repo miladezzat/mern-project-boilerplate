@@ -1,27 +1,29 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
-const indexRouter = require('./routes/index');
+
+//routes
+const usersRouter = require('./routes/api/users');
 const itemsRouter = require('./routes/api/items');
 
 const app = express(); //creating app
 
 app.use(logger('dev')); //logger
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
 //using api
 app.use('/api/items', itemsRouter);
+app.use('/api/users', usersRouter);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'front-end/build')));
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'front-end','build','index.html'))
+        res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'))
     });
 }
 
