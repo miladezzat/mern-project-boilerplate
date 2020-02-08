@@ -4,16 +4,13 @@ import RegisterModal from '../auth/RegiterModal';
 import LoginModal from '../auth/LoginModal';
 import Logout from '../auth/Logout';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 class Navigation extends Component {
     static propTypes = {
         auth: PropTypes.object.isRequired
     }
     render() {
         const { isAuthenticated, user } = this.props.auth;
-        console.log('====================================');
-        console.log(this.props);
-        console.log('====================================');
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link className="navbar-brand" to="/">Boilerplate</Link>
@@ -23,7 +20,7 @@ class Navigation extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         {
-                            isAuthenticated ? <NavigationAuth />
+                            isAuthenticated ? <NavigationAuth user={user} />
                                 : <NavigationNonAuth />
                         }
                     </ul>
@@ -34,10 +31,17 @@ class Navigation extends Component {
     }
 }
 
-const NavigationAuth = () => (
+const NavigationAuth = (props) => (
     <Fragment>
         <li className="nav-item">
             <Logout />
+        </li>
+        <li className="nav-item">
+            <Link to="/profile" className="nav-link">
+                {
+                    props.user.name
+                }
+            </Link>
         </li>
     </Fragment>
 );

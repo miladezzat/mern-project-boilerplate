@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getItems, deleteItem } from '../../actions/itemActions'
 import PropTypes from 'prop-types';
 import AddItem from '../AddItem';
+import { Redirect } from 'react-router-dom';
 
 class ShoppingList extends Component {
     static propTypes = {
@@ -16,6 +17,10 @@ class ShoppingList extends Component {
         this.props.deleteItem(id);
     }
     render() {
+        if (!this.props.isAuthenticated) {
+            return <Redirect to="/" />
+        }
+
         const { items } = this.props.itemReducer;
         const ListItems = items && items.length > 0 &&
             (

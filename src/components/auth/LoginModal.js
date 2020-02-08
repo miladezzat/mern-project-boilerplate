@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 import PropTypes from 'prop-types';
-
 import {
     Button,
     Modal,
@@ -41,7 +40,6 @@ class Login extends Component {
 
     componentDidUpdate(prevProps) {
         const { error, isAuthenticated } = this.props;
-
         if (error !== prevProps.error) {
             //check register error
             if (error.id === 'LOGIN_FAIL') {
@@ -56,10 +54,10 @@ class Login extends Component {
         if (this.state.modal) {
             if (isAuthenticated) {
                 this.toggle();
+                
             }
         }
     }
-
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
