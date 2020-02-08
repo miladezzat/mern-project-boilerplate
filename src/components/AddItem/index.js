@@ -14,11 +14,16 @@ import {
     Input
 } from 'reactstrap'
 class AddItem extends Component {
+    static propTypes = {
+        addItem: PropTypes.func.isRequired,
+        itemReducer: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
     state = {
         modal: false,
         name: '',
     }
-    toggle = () => {        
+    toggle = () => {
         this.setState({
             modal: !this.state.modal
         })
@@ -41,11 +46,21 @@ class AddItem extends Component {
     render() {
         return (
             <div className="col-12 mt-3">
-                <Button
-                    color="dark"
-                    className="mb-2"
-                    onClick={this.toggle}
-                >Add Item</Button>
+                {
+                    this.props.isAuthenticated
+                        ?
+                        (
+                            <Button
+                                color="dark"
+                                className="mb-2"
+                                onClick={this.toggle}
+                            >Add Item</Button>
+                        )
+                        :
+                        (
+                            <h1>Please Log in to Manage you items</h1>
+                        )
+                }
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
@@ -60,7 +75,7 @@ class AddItem extends Component {
                                     name="name"
                                     id="item"
                                     placeholder="Add Shopping Item"
-                                    onChange={this.onChange}                                
+                                    onChange={this.onChange}
                                 />
                             </FormGroup>
                             <Button color="dark" size="block">Add Item</Button>
@@ -71,12 +86,9 @@ class AddItem extends Component {
         )
     }
 }
-AddItem.propTypes = {
-    addItem: PropTypes.func.isRequired,
-    itemReducer: PropTypes.object.isRequired
-}
 const mapStateToProps = (state) => ({
-    itemReducer: state.itemReducer
+    itemReducer: state.itemReducer,
+    isAuthenticated: state.authReducer.isAuthenticated
 })
 
 export default connect(mapStateToProps, { addItem })(AddItem);

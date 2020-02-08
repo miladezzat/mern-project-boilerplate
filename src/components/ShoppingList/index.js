@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import AddItem from '../AddItem';
 
 class ShoppingList extends Component {
+    static propTypes = {
+        getItems: PropTypes.func.isRequired,
+        itemReducer: PropTypes.object.isRequired,
+    }
     componentDidMount() {
         this.props.getItems();
     }
@@ -12,7 +16,7 @@ class ShoppingList extends Component {
         this.props.deleteItem(id);
     }
     render() {
-        const { items } = this.props.itemReducer;        
+        const { items } = this.props.itemReducer;
         const ListItems = items && items.length > 0 &&
             (
                 <ul className="list-group ">
@@ -20,12 +24,20 @@ class ShoppingList extends Component {
                         items.map(({ _id, name }) => (
                             <li className="list-group-item clearfix" key={_id}>
                                 <span className="float-left">{name}</span>
-                                <button
-                                    className="btn btn-danger float-right"
-                                    onClick={() => { this.onDeleteClick(_id) }}
-                                >
-                                    &times;
-                                </button>
+                                {
+                                    this.props.isAuthenticated
+                                        ?
+                                        (
+                                            <button
+                                                className="btn btn-danger float-right"
+                                                onClick={() => { this.onDeleteClick(_id) }}
+                                            >&times;</button>
+                                        )
+                                        :
+                                        (
+                                            null
+                                        )
+                                }
                             </li>
                         ))
                     }
@@ -44,13 +56,10 @@ class ShoppingList extends Component {
     }
 }
 
-ShoppingList.propTypes = {
-    getItems: PropTypes.func.isRequired,
-    itemReducer: PropTypes.object.isRequired,
-}
 
 const mapStateToProps = (state) => ({
-    itemReducer: state.itemReducer
+    itemReducer: state.itemReducer,
+    isAuthenticated: state.authReducer.isAuthenticated
 })
 
 
