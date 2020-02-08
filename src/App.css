@@ -1,4 +1,4 @@
-.fade-enter{
+/* .fade-enter{
     opacity: 0.1;
 }
 .fade-enter-active{
@@ -11,4 +11,10 @@
 .fade-exit-active{
     opacity: 0.01;
     transition: opacity 1000ms ease-in; 
+} */
+
+.avatar {
+    height: 30px;
+    border-radius: 50%;
 }
+

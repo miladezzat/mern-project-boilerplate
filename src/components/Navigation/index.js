@@ -38,9 +38,7 @@ const NavigationAuth = (props) => (
         </li>
         <li className="nav-item">
             <Link to="/profile" className="nav-link">
-                {
-                    props.user.name
-                }
+                <img  src={require('../../assets/avatar.png')} alt="..." className="shadow bg-light avatar"/> 
             </Link>
         </li>
     </Fragment>

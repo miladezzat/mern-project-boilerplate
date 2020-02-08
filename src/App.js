@@ -8,13 +8,16 @@ import './App.css';
 import Landing from './components/Landing';
 import * as ROUTING from './constants/routes';
 
-// import { loadUser } from './actions/authActions';
+import store from './Store'
+import { loadUser } from './actions/authActions';
 import Profile from './components/Profile';
 import NotFound from './components/NotFound';
 
 
 class App extends Component {
-
+  componentDidMount(){
+    store.dispatch(loadUser())
+  }
   render() {
     return (
       <Fragment>
