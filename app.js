@@ -6,6 +6,7 @@ const logger = require('morgan');
 //routes
 const usersRouter = require('./routes/api/users');
 const itemsRouter = require('./routes/api/items');
+const authRouter = require('./routes/api/auth');
 
 const app = express(); //creating app
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 
 //using api
 app.use('/api/items', itemsRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 
 if (process.env.NODE_ENV === 'production') {

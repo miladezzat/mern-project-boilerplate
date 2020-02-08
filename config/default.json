@@ -1,0 +1,4 @@
+{
+    "mongoURI": "localhost:27017/boilerplate",
+    "jwtSecret":"boilerplate_mern_jwt_key"
+}
