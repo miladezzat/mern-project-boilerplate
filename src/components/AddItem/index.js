@@ -63,7 +63,7 @@ class AddItem extends Component {
                                     onChange={this.onChange}                                
                                 />
                             </FormGroup>
-                            <Button >Add Item</Button>
+                            <Button color="dark" size="block">Add Item</Button>
                         </Form>
                     </ModalBody>
                 </Modal>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import RegisterModal from '../auth/RegiterModal';
+import Logout from '../auth/Logout'
 class Navigation extends Component {
 
     render() {
@@ -13,7 +15,10 @@ class Navigation extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active">
-                            <Link className="nav-link" to="/"> Github <span className="sr-only">(current)</span></Link>
+                            <RegisterModal />
+                        </li>
+                        <li className="nav-item">
+                            <Logout />
                         </li>
                     </ul>
 

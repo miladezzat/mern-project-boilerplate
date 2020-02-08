@@ -32,6 +32,7 @@ export default function (state = inialState, action) {
             };
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
+            localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
                 ...action.payload,
@@ -42,6 +43,7 @@ export default function (state = inialState, action) {
         case AUTH_ERROR:
         case LOGOUT_SUCCESS:
         case REGISTER_FAIL:
+            localStorage.removeItem('token');
             return {
                 ...state,
                 token: null,
